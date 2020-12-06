@@ -10,8 +10,8 @@ module.exports = {
     if (!queue) return message.channel.send("There is no queue.").catch(console.error);
     if (!canModifyQueue(message.member)) return;
 
-    if (!args.length) return message.reply(`Usage: ${message.client.prefix}move <Queue Number>`);
-    if (isNaN(args[0]) || args[0] <= 1) return message.reply(`Usage: ${message.client.prefix}move <Queue Number>`);
+    if (!args.length) return message.channel.send(`Usage: ${message.client.prefix}move <Queue Number>`);
+    if (isNaN(args[0]) || args[0] <= 1) return message.channel.send(`Usage: ${message.client.prefix}move <Queue Number>`);
 
     let song = queue.songs[args[0] - 1];
 

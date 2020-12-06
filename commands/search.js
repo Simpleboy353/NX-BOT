@@ -12,9 +12,9 @@ module.exports = {
         .reply(`Usage: ${message.client.prefix}${module.exports.name} <Video Name>`)
         .catch(console.error);
     if (message.channel.activeCollector)
-      return message.reply("A message collector is already active in this channel.");
+      return message.channel.send("A message collector is already active in this channel.");
     if (!message.member.voice.channel)
-      return message.reply("You need to join a voice channel first!").catch(console.error);
+      return message.channel.send("You need to join a voice channel first!").catch(console.error);
 
     const search = args.join(" ");
 

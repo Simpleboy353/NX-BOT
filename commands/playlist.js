@@ -18,16 +18,16 @@ module.exports = {
       return message
         .reply(`Usage: ${message.client.prefix}playlist <YouTube Playlist URL | Playlist Name>`)
         .catch(console.error);
-    if (!channel) return message.reply("You need to join a voice channel first!").catch(console.error);
+    if (!channel) return message.send("You need to join a voice channel first!").catch(console.error);
 
     const permissions = channel.permissionsFor(message.client.user);
     if (!permissions.has("CONNECT"))
-      return message.reply("Cannot connect to voice channel, missing permissions");
+      return message.channel.send("Cannot connect to voice channel, missing permissions");
     if (!permissions.has("SPEAK"))
-      return message.reply("I cannot speak in this voice channel, make sure I have the proper permissions!");
+      return message.channel.send("I cannot speak in this voice channel, make sure I have the proper permissions!");
 
     if (serverQueue && channel !== message.guild.me.voice.channel)
-      return message.reply(`You must be in the same channel as ${message.client.user}`).catch(console.error);
+      return message.channel.send(`You must be in the same channel as ${message.client.user}`).catch(console.error);
 
     const search = args.join(" ");
     const pattern = /^.*(youtu.be\/|list=)([^#\&\?]*).*/gi;
@@ -53,7 +53,7 @@ module.exports = {
         videos = await playlist.getVideos(MAX_PLAYLIST_SIZE || 10, { part: "snippet" });
       } catch (error) {
         console.error(error);
-        return message.reply("Playlist not found :(").catch(console.error);
+        return message.channel.send("Playlist not found :(").catch(console.error);
       }
     } else if (scdl.isValidUrl(args[0])) {
       if (args[0].includes("/sets/")) {
@@ -72,7 +72,7 @@ module.exports = {
         videos = await playlist.getVideos(MAX_PLAYLIST_SIZE || 10, { part: "snippet" });
       } catch (error) {
         console.error(error);
-        return message.reply(error.message).catch(console.error);
+        return message.channel.send(error.message).catch(console.error);
       }
     }
 

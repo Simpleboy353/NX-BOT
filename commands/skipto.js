@@ -14,7 +14,7 @@ module.exports = {
     if (!queue) return message.channel.send("There is no queue.").catch(console.error);
     if (!canModifyQueue(message.member)) return;
     if (args[0] > queue.songs.length)
-      return message.reply(`The queue is only ${queue.songs.length} songs long!`).catch(console.error);
+      return message.channel.send(`The queue is only ${queue.songs.length} songs long!`).catch(console.error);
 
     queue.playing = true;
 

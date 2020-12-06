@@ -15,20 +15,20 @@ module.exports = {
     const { channel } = message.member.voice;
 
     const serverQueue = message.client.queue.get(message.guild.id);
-    if (!channel) return message.reply("You need to join a voice channel first!").catch(console.error);
+    if (!channel) return message.channel.send("You need to join a voice channel first!").catch(console.error);
     if (serverQueue && channel !== message.guild.me.voice.channel)
-      return message.reply(`You must be in the same channel as ${message.client.user}`).catch(console.error);
+      return message.channel.send(`You must be in the same channel as ${message.client.user}`).catch(console.error);
 
     if (!args.length)
       return message
-        .reply(`Usage: ${message.client.prefix}play <YouTube URL | Video Name | Soundcloud URL>`)
+        .channe.send(`Usage: ${message.client.prefix}play <YouTube URL | Video Name | Soundcloud URL>`)
         .catch(console.error);
 
     const permissions = channel.permissionsFor(message.client.user);
     if (!permissions.has("CONNECT"))
-      return message.reply("Cannot connect to voice channel, missing permissions");
+      return message.channel.send("Cannot connect to voice channel, missing permissions");
     if (!permissions.has("SPEAK"))
-      return message.reply("I cannot speak in this voice channel, make sure I have the proper permissions!");
+      return message.channel.send("I cannot speak in this voice channel, make sure I have the proper permissions!");
 
     const search = args.join(" ");
     const videoPattern = /^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
@@ -51,14 +51,14 @@ module.exports = {
           if (res.statusCode == "302") {
             return message.client.commands.get("play").execute(message, [res.headers.location]);
           } else {
-            return message.reply("No content could be found at that url.").catch(console.error);
+            return message.channel.send("No content could be found at that url.").catch(console.error);
           }
         });
       } catch (error) {
         console.error(error);
-        return message.reply(error.message).catch(console.error);
+        return message.channel.send(error.message).catch(console.error);
       }
-      return message.reply("Following url redirection...").catch(console.error);
+      return message.channel.send("Following url redirection...").catch(console.error);
     }
 
     const queueConstruct = {
@@ -84,7 +84,7 @@ module.exports = {
         };
       } catch (error) {
         console.error(error);
-        return message.reply(error.message).catch(console.error);
+        return message.channel.send(error.message).catch(console.error);
       }
     } else if (scRegex.test(url)) {
       try {
@@ -96,7 +96,7 @@ module.exports = {
         };
       } catch (error) {
         console.error(error);
-        return message.reply(error.message).catch(console.error);
+        return message.channel.send(error.message).catch(console.error);
       }
     } else {
       try {
@@ -109,7 +109,7 @@ module.exports = {
         };
       } catch (error) {
         console.error(error);
-        return message.reply(error.message).catch(console.error);
+        return message.channel.send(error.message).catch(console.error);
       }
     }
 

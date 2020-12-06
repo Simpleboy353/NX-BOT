@@ -5,9 +5,9 @@ module.exports = {
     const { channel } = message.member.voice;
     const queue = message.client.queue.get(message.guild.id);
 
-    if (!args.length) return message.reply("Usage: /clip <name>").catch(console.error);
-    if (queue) return message.reply("Can't play clip because there is an active queue.");
-    if (!channel) return message.reply("You need to join a voice channel first!").catch(console.error);
+    if (!args.length) return message.channel.send("Usage: /clip <name>").catch(console.error);
+    if (queue) return message.channel.send("Can't play clip because there is an active queue.");
+    if (!channel) return message.channel.send("You need to join a voice channel first!").catch(console.error);
 
     const queueConstruct = {
       textChannel: message.channel,

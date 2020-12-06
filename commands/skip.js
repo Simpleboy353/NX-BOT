@@ -7,7 +7,7 @@ module.exports = {
   execute(message) {
     const queue = message.client.queue.get(message.guild.id);
     if (!queue)
-      return message.reply("There is nothing playing that I could skip for you.").catch(console.error);
+      return message.channel.send("There is nothing playing that I could skip for you.").catch(console.error);
     if (!canModifyQueue(message.member)) return;
 
     queue.playing = true;

@@ -13,7 +13,7 @@ module.exports = {
     hours %= 24;
 
     return message
-      .reply(`Uptime: \`${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds\``)
+      .channel.send(`Uptime: \`${days} day(s),${hours} hours, ${minutes} minutes, ${seconds} seconds\``)
       .catch(console.error);
   }
 };
