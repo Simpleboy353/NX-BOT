@@ -1,7 +1,7 @@
 module.exports = {
     name: "slowmode",
     description: "Lets you set slowmode on the channel.",
-    execute (client, message, args) {
+    execute(message, args) {
         const amount = parseInt(args[0])
         if(message.member.hasPermission("MANAGE_CHANNEL"))
         if(isNaN(amount)) return message.channel.send("It doesn't seem to be valid number")
