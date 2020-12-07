@@ -9,15 +9,8 @@ module.exports = {
     let helpEmbed = new MessageEmbed()
       .setTitle(`Music Commands`)
       .setDescription("`clip`, `clips`, loop`, `lyrics`, `move`, `nowplaying`, `pause`, `play`, `playlist`, `queue`, `remove`, `resume`, `search`, `shuffle`, `skip`, `skipto`, `stop`")
-      .setColor("#F8AA2A");
+      .setColor("BLUE");
 
-    commands.forEach((cmd) => {
-      helpEmbed.addField(
-        `**${message.client.prefix}${cmd.name} ${cmd.aliases ? `(${cmd.aliases})` : ""}**`,
-        `${cmd.description}`,
-        true
-      );
-    });
 
     helpEmbed.setTimestamp();
 
