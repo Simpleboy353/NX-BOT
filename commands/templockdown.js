@@ -4,7 +4,7 @@ const ms = require("ms"); //Make sure to install ms package
 module.exports = {
     name: "timedlockdown",
     description: "Start a timed lockdown in a channel",
-    run: async(client, message, args) => {
+    execute(message, args) {
         const time = args.join(" ");
         if (!time) {
         return message.channel.send("Enter a valid time period in `Seconds`, `Minutes` or `Hours`")
@@ -20,7 +20,7 @@ module.exports = {
            ],);
            const embed = new Discord.MessageEmbed()
            .setTitle("Channel Updates")
-           .setDescription(`${message.channel} has been placed under lockdown for `${time}``)
+           .setDescription(`${message.channel} has been placed under lockdown for ${time}`)
            .setColor("RANDOM");
            message.channel.send(embed)
 

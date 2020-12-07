@@ -6,7 +6,7 @@ module.exports = {
 	name: "tempban",
 	category: "info",
 	description: "Returns latency and API ping",
-	run: async (client, message, args) => {
+	async execute(message, args) {
 		const reason = args.splice(2).join(" ");
 		const tbuser = message.mentions.members.first();
 		const regex = args.splice(1).join(" ");
