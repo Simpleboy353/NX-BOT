@@ -8,7 +8,7 @@ module.exports = {
 
     let helpEmbed = new MessageEmbed()
       .setTitle(`Music Commands`)
-      .setDescription("`clip`, `clips`, loop`, `lyrics`, `move`, `nowplaying`, `pause`, `play`, `playlist`, `queue`, `remove`, `resume`, `search`, `shuffle`, `skip`, `skipto`, `stop`")
+      .setDescription("`clip`, `clips`, `loop`, `lyrics`, `move`, `nowplaying`, `pause`, `play`, `playlist`, `queue`, `remove`, `resume`, `search`, `shuffle`, `skip`, `skipto`, `stop`")
       .setColor("BLUE");
 
 
